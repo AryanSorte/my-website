@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aryan Sorte — Network Engineer &amp; Telecommunications Specialist</title>
+  
+  <!-- Modern Geometric Sans & Editorial Serif Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #0c0d12;
+      --bg-card: #13141c;
+      --bg-card-hover: #191b26;
+      --accent-orange: #FF5E1E;
+      --accent-orange-hover: #FF7438;
+      --accent-blue: #3C7EFF;
+      --text-white: #FFFFFF;
+      --text-muted: #A1A1AA;
+      --text-dim: #71717A;
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-main);
+      overflow-x: hidden;
+      overscroll-behavior: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      cursor: grab;
+    }
+
+    body.cursor-dragging {
+      cursor: grabbing !important;
+      user-select: none !important;
+    }
+
+    /* Fixed Canvas Video Animation Layer - Crystal Sharp, Zero Blur */
+    #frame-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      z-index: 0;
+      pointer-events: none;
+      background-color: #0c0d12;
+      transition: opacity 0.35s ease-out;
+    }
+
+    /* Main Content Wrapper */
+    .page-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+
+    /* Container matching wide 95% layout */
+    .container {
+      width: 95%;
+      max-width: 1640px;
+      margin: 0 auto;
+      padding: 0 14px;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 20px 2.8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.25s ease, padding 0.25s ease, border-color 0.25s ease;
+      background: rgba(12, 13, 18, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .navbar.scrolled {
+      background: rgba(12, 13, 18, 0.96);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 15px 2.8%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-logo {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(255, 94, 30, 0.15);
+      border: 1px solid rgba(255, 94, 30, 0.35);
+      color: var(--accent-orange);
+      padding: 2px 8px;
+      border-radius: 9999px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-white);
+    }
+
+    /* Primary Pill Button */
+    .btn-touch-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #FFFFFF;
+      color: #0E0E10;
+      padding: 7px 8px 7px 20px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-touch-white:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.22);
+    }
+
+    .btn-touch-white .btn-arrow-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-touch-white:hover .btn-arrow-icon {
+      transform: translateX(2px);
+    }
+
+    /* Pill Badges */
+    .section-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 6px 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 10px var(--accent-orange);
+    }
+
+    .blue-dot {
+      background: var(--accent-blue);
+      box-shadow: 0 0 10px var(--accent-blue);
+    }
+
+    /* ========================================================
+       HERO SECTION
+       ======================================================== */
+    .hero-section {
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 120px;
+      padding-bottom: 50px;
+      position: relative;
+    }
+
+    /* Cinematic seamless fade transition from hero background into content */
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(to bottom, transparent 0%, rgba(13, 14, 20, 0.45) 45%, rgba(13, 14, 20, 0.85) 80%, #0d0e14 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 30px;
+      gap: 40px;
+    }
+
+    .hero-left {
+      max-width: 840px;
+    }
+
+    .hero-greeting {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(3.4rem, 6.2vw, 5.8rem);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      color: var(--text-white);
+      text-transform: capitalize;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+      margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .hero-right {
+      max-width: 440px;
+      margin-top: 40px;
+      background: rgba(19, 20, 28, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 26px 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-subtext {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 20px;
+    }
+
+    .hero-tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Core Services / Skills Bar */
+    .services-bar {
+      margin-top: 28px;
+      padding: 18px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .service-item-num {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
+    }
+
+    .service-item-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .service-item-sub {
+      font-size: 0.86rem;
+      color: var(--text-dim);
+    }
+
+    /* Credentials / Affiliations Bar */
+    .trusted-bar {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(19, 20, 28, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 14px 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .trusted-label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .trusted-logos {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .cred-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .cred-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+    }
+
+    /* ========================================================
+       SECTION 1: PROFESSIONAL SUMMARY
+       ======================================================== */
+    .summary-section {
+      position: relative;
+      background: #0d0e14;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 65px 0 60px 0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .summary-heading {
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      margin-bottom: 26px;
+    }
+
+    .summary-text-lead {
+      font-size: 1.22rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .summary-text-body {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.68);
+      margin-bottom: 26px;
+    }
+
+    .summary-card-right {
+      background: #14151e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 26px;
+      padding: 40px 36px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .summary-info-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .info-spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .info-spec-item {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.95rem;
+    }
+
+    .info-spec-label {
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .info-spec-val {
+      color: #FFFFFF;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .btn-connect-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, #FF682B 0%, #FF4500 100%);
+      color: #FFFFFF;
+      padding: 13px 20px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(255, 94, 30, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-connect-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(255, 94, 30, 0.5);
+    }
+
+    /* ========================================================
+       SECTION 2: WORK EXPERIENCE
+       ======================================================== */
+    .experience-section {
+      position: relative;
+      background: #0a0b10;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 65px 0 70px 0;
+    }
+
+    .section-title-lg {
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      margin-bottom: 36px;
+    }
+
+    .timeline-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .exp-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 26px;
+      padding: 44px 48px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .exp-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .exp-role-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    .exp-company-sub {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      margin-top: 4px;
+    }
+
+    .exp-meta-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .exp-date-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .exp-location {
+      font-size: 0.86rem;
+      color: var(--text-dim);
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .exp-bullets li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .exp-bullets li::before {
+      content: '•';
+      position: absolute;
+      left: 6px;
+      color: var(--accent-orange);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .exp-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .exp-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* ========================================================
+       SECTION 3: EDUCATION & CERTIFICATIONS
+       ======================================================== */
+    .edu-section {
+      position: relative;
+      background: #0d0e14;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 65px 0 70px 0;
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 26px;
+      padding: 42px 40px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+    }
+
+    .edu-icon-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(60, 126, 255, 0.12);
+      border: 1px solid rgba(60, 126, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+    }
+
+    .edu-school {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .edu-degree {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      margin-bottom: 12px;
+    }
+
+    .edu-timeline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .edu-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Certifications Bar */
+    .certs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .cert-box {
+      background: #151620;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .cert-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 94, 30, 0.12);
+      border: 1px solid rgba(255, 94, 30, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-orange);
+      flex-shrink: 0;
+    }
+
+    .cert-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .cert-issuer {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    /* ========================================================
+       SECTION 4: VERIFIED STATS & IMPACT (LINKEDIN DATA)
+       ======================================================== */
+    .stats-section {
+      position: relative;
+      background: #090a0f;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 65px 0 70px 0;
+    }
+
+    .stats-top-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .stat-big-card {
+      background: #13141d;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 28px;
+      padding: 48px 52px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .stat-big-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .stat-card-badge {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .stat-card-number {
+      font-size: 6.4rem;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+    }
+
+    .stat-card-label {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .stat-card-desc {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 440px;
+    }
+
+    /* Bottom 4 Pie Stats Bar */
+    .stats-bottom-bar {
+      background: #11121a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 36px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .stat-mini-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .stat-pie-box {
+      width: 58px;
+      height: 58px;
+      margin-bottom: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-mini-item:hover .stat-pie-box {
+      transform: scale(1.1);
+    }
+
+    .stat-pie-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .stat-mini-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .stat-mini-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* ========================================================
+       SECTION 5: ARYAN SORTE SIGNATURE SHOWCASE
+       ======================================================== */
+    .person-section {
+      position: relative;
+      background: #08090d;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 65px 0 70px 0;
+      overflow: hidden;
+    }
+
+    .person-hero-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 32px;
+    }
+
+    .person-name-line {
+      font-size: clamp(5.5rem, 15vw, 13rem);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      user-select: none;
+      text-align: center;
+      width: 100%;
+    }
+
+    .name-first {
+      margin-bottom: -70px;
+      z-index: 1;
+    }
+
+    .name-last {
+      margin-top: -70px;
+      z-index: 3;
+    }
+
+    .person-image-card {
+      position: relative;
+      z-index: 2;
+      width: 400px;
+      height: 500px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #141416;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.9);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .person-image-card:hover {
+      transform: scale(1.03) translateY(-6px);
+      box-shadow: 0 45px 110px rgba(0, 0, 0, 0.98);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .person-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .person-image-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .person-meta-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .person-role-pill {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 24px;
+      border-radius: 9999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+    }
+
+    .person-statement {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 500;
+    }
+
+    .person-contact-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .person-contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .person-contact-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ========================================================
+       SECTION 6: CONTACT & OPPORTUNITY FORM
+       ======================================================== */
+    .scale-section {
+      position: relative;
+      background: #0b0c11;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 65px 0 55px 0;
+    }
+
+    .scale-header {
+      margin-bottom: 36px;
+    }
+
+    .ready-top {
+      font-size: clamp(3.2rem, 5.5vw, 5.6rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .ready-bottom-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .ready-grow {
+      font-size: clamp(3.8rem, 7vw, 6.8rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .ready-scale-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 6px;
+    }
+
+    .lets-talk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 18px;
+      border-radius: 12px;
+      width: fit-content;
+    }
+
+    .lets-talk-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 10px var(--accent-orange);
+    }
+
+    .lets-talk-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lets-talk-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .lets-talk-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .ready-scale-text {
+      font-size: clamp(1.8rem, 3.2vw, 3rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .scale-form {
+      margin-top: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 80px;
+      row-gap: 48px;
+      margin-bottom: 50px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .form-field-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .form-field-input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 12px 0;
+      font-family: var(--font-main);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #FFFFFF;
+      outline: none;
+      transition: border-color 0.25s ease;
+    }
+
+    .form-field-input:focus {
+      border-bottom-color: var(--accent-orange);
+    }
+
+    .form-field-input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .form-action-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .btn-submit-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg, #FF682B 0%, #FF4500 100%);
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 12px 10px 28px;
+      border-radius: 9999px;
+      font-family: var(--font-main);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255, 94, 30, 0.4);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+
+    .btn-submit-pill:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 40px rgba(255, 94, 30, 0.55);
+    }
+
+    .btn-submit-pill .btn-submit-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: #FF5E1E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-submit-pill:hover .btn-submit-circle {
+      transform: translateX(3px);
+    }
+
+    .footer-bar {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    /* ========================================================
+       CURSOR NAVIGATION SYSTEM (OPERATE WITH CURSOR)
+       ======================================================== */
+    /* Floating Vertical Cursor Rail (Right Edge) */
+    .cursor-nav-rail {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      background: rgba(18, 19, 26, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 14px 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      user-select: none;
+    }
+
+    .cursor-nav-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cursor-nav-btn:hover {
+      background: var(--accent-orange);
+      border-color: var(--accent-orange);
+      transform: scale(1.1);
+    }
+
+    .cursor-track-slot {
+      position: relative;
+      width: 6px;
+      height: 160px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+
+    .cursor-thumb-handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 14px;
+      height: 24px;
+      border-radius: 9999px;
+      background: var(--accent-orange);
+      box-shadow: 0 0 12px var(--accent-orange);
+      cursor: grab;
+      transition: transform 0.1s ease;
+    }
+
+    .cursor-thumb-handle:active {
+      cursor: grabbing;
+      transform: translate(-50%, 0) scale(1.2);
+    }
+
+    /* Floating Cursor Drag Hint Pill */
+    .cursor-hint-pill {
+      position: fixed;
+      bottom: 24px;
+      left: 28px;
+      z-index: 999;
+      background: rgba(18, 19, 26, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 8px 18px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .cursor-hint-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 8px var(--accent-orange);
+    }
+
+    /* Media Queries */
+    @media (max-width: 1024px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .edu-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .certs-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .stats-top-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .stat-card-number {
+        font-size: 5rem;
+      }
+      .cursor-nav-rail {
+        right: 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 16px 4%;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero-main {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .trusted-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+      }
+      .trusted-logos {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .exp-card {
+        padding: 30px 24px;
+      }
+      .stats-bottom-bar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        padding: 28px 20px;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        row-gap: 36px;
+      }
+      .person-image-card {
+        width: 280px;
+        height: 360px;
+      }
+      .name-first {
+        margin-bottom: -35px;
+      }
+      .name-last {
+        margin-top: -35px;
+      }
+      .cursor-hint-pill {
+        display: none;
+      }
+      .cursor-nav-rail {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED CANVAS VIDEO BACKGROUND - 240 FRAMES SCRUBBING -->
+  <canvas id="frame-canvas"></canvas>
+
+  <!-- FLOATING INTERACTIVE CURSOR SCROLL RAIL (OPERATE UP & DOWN WITH CURSOR) -->
+  <div class="cursor-nav-rail" id="cursorRail" title="Operate page up and down with cursor">
+    <button class="cursor-nav-btn" id="btnScrollUp" aria-label="Scroll Up">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+    
+    <div class="cursor-track-slot" id="cursorTrackSlot">
+      <div class="cursor-thumb-handle" id="cursorThumbHandle"></div>
+    </div>
+
+    <button class="cursor-nav-btn" id="btnScrollDown" aria-label="Scroll Down">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <!-- FLOATING CURSOR DRAG HINT PILL -->
+  <div class="cursor-hint-pill" id="cursorHintPill">
+    <span class="cursor-hint-dot"></span>
+    <span>Grab &amp; Drag cursor anywhere to scroll up &amp; down</span>
+  </div>
+
+  <!-- PAGE CONTENT LAYER -->
+  <div class="page-wrapper">
+    
+    <!-- NAVIGATION BAR -->
+    <header class="navbar" id="main-nav">
+      <a href="#home" class="nav-logo">
+        <span>Aryan Sorte</span>
+        <span class="nav-logo-badge">CCNA</span>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Certs &amp; Skills</a></li>
+          <li><a href="#stats">Impact</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn-touch-white">
+          <span>Get in touch</span>
+          <div class="btn-arrow-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        
+        <div class="hero-main">
+          <div class="hero-left">
+            <div class="section-pill-badge">
+              <span class="badge-dot"></span>
+              <span>ACTIVELY SEEKING FULL-TIME OPPORTUNITIES</span>
+            </div>
+            <div class="hero-greeting">Hey, I'm Aryan Sorte</div>
+            <h1 class="hero-title">
+              Network Engineer &amp;<br />
+              <em>Telecommunications</em> Specialist
+            </h1>
+          </div>
+
+          <div class="hero-right">
+            <p class="hero-subtext">
+              Master's in Telecommunications Engineering from UT Dallas. Hands-on enterprise experience supporting mission-critical banking infrastructure for <strong>5M+ users</strong> at HDFC Bank. CCNA certified in routing, switching, network security, and AI capacity forecasting.
+            </p>
+            <div class="hero-tags-cloud">
+              <span class="hero-tag">Routing &amp; Switching</span>
+              <span class="hero-tag">OSPF / VLANs</span>
+              <span class="hero-tag">CyberArk PAM</span>
+              <span class="hero-tag">TCP/IP</span>
+              <span class="hero-tag">AppDynamics</span>
+              <span class="hero-tag">Python &amp; ML</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Core Competencies Bar -->
+        <div class="services-bar">
+          <div class="services-grid">
+            <div class="service-item">
+              <div class="service-item-num">#01 NETWORK ENGINEERING</div>
+              <div class="service-item-title">Routing &amp; Switching</div>
+              <div class="service-item-sub">OSPF, BGP, VLANs, STP &amp; TCP/IP Core</div>
+            </div>
+            <div class="service-item">
+              <div class="service-item-num">#02 SECURITY &amp; COMPLIANCE</div>
+              <div class="service-item-title">Access &amp; PAM Security</div>
+              <div class="service-item-sub">CyberArk, Firewalls, ACLs &amp; Zero Trust</div>
+            </div>
+            <div class="service-item">
+              <div class="service-item-num">#03 TELEMETRY &amp; OBSERVABILITY</div>
+              <div class="service-item-title">Enterprise Monitoring</div>
+              <div class="service-item-sub">AppDynamics, SolarWinds, Grafana &amp; ServiceNow</div>
+            </div>
+            <div class="service-item">
+              <div class="service-item-num">#04 AUTOMATION &amp; PREDICTION</div>
+              <div class="service-item-title">Network Automation &amp; ML</div>
+              <div class="service-item-sub">Python, Ansible &amp; Time-Series Traffic Models</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verified Credentials Bar -->
+        <div class="trusted-bar">
+          <div class="trusted-label">Verified Credentials</div>
+          <div class="trusted-logos">
+            <div class="cred-item">
+              <span class="cred-dot"></span>
+              <span>UT Dallas (MS Telecom)</span>
+            </div>
+            <div class="cred-item">
+              <span class="cred-dot"></span>
+              <span>HDFC Bank (5M+ Users)</span>
+            </div>
+            <div class="cred-item">
+              <span class="cred-dot"></span>
+              <span>Cisco CCNA Certified</span>
+            </div>
+            <div class="cred-item">
+              <span class="cred-dot"></span>
+              <span>HashiCorp Certified</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 1: PROFESSIONAL SUMMARY -->
+    <section class="summary-section" id="summary">
+      <div class="container">
+        <div class="section-pill-badge">
+          <span class="badge-dot blue-dot"></span>
+          <span>EXECUTIVE SUMMARY</span>
+        </div>
+
+        <div class="summary-grid">
+          <div>
+            <h2 class="summary-heading">
+              Supporting mission-critical infrastructure with enterprise reliability &amp; predictive intelligence.
+            </h2>
+            <p class="summary-text-lead">
+              Network Engineer with a Master's in Telecommunications Engineering from UT Dallas and hands-on enterprise experience supporting mission-critical infrastructure for 5M+ users at HDFC Bank.
+            </p>
+            <p class="summary-text-body">
+              CCNA certified, with practical depth in TCP/IP, routing and switching (OSPF, VLANs), network security, and monitoring platforms including SolarWinds, AppDynamics, and Grafana. At HDFC Bank, I reduced incident resolution time by 35% and downtime by 30% through structured root-cause analysis, and maintained 95%+ SLA compliance across a high-volume ServiceNow incident queue.
+            </p>
+            <p class="summary-text-body">
+              I also led development of a machine learning model to forecast network incidents from time-series traffic data, giving the operations team a proactive edge in capacity planning. I'm now seeking a Network Engineer, NOC Engineer, or Telecom Engineer role in the Dallas-Fort Worth area (and open to relocation) where I can bring this combination of enterprise operations experience, modern automation skills (Python, Ansible), and academic depth in network design and security.
+            </p>
+          </div>
+
+          <!-- Quick Spec & Target Profile Card -->
+          <div class="summary-card-right">
+            <h3 class="summary-info-title">Candidate Snapshot</h3>
+            <div class="info-spec-list">
+              <div class="info-spec-item">
+                <span class="info-spec-label">Primary Role</span>
+                <span class="info-spec-val">Network / NOC / Telecom Engineer</span>
+              </div>
+              <div class="info-spec-item">
+                <span class="info-spec-label">Education</span>
+                <span class="info-spec-val">MS Telecom (UT Dallas)</span>
+              </div>
+              <div class="info-spec-item">
+                <span class="info-spec-label">Certification</span>
+                <span class="info-spec-val">Cisco CCNA (Networking)</span>
+              </div>
+              <div class="info-spec-item">
+                <span class="info-spec-label">Target Location</span>
+                <span class="info-spec-val">Dallas-Fort Worth, TX &amp; Relocation</span>
+              </div>
+              <div class="info-spec-item">
+                <span class="info-spec-label">Direct Email</span>
+                <span class="info-spec-val">aryansorte2016@gmail.com</span>
+              </div>
+              <div class="info-spec-item">
+                <span class="info-spec-label">Portfolio URL</span>
+                <span class="info-spec-val">aryansorte.lovable.app</span>
+              </div>
+            </div>
+            <a href="https://www.linkedin.com/in/aryansorte381" target="_blank" rel="noopener noreferrer" class="btn-connect-pill">
+              <span>View LinkedIn Profile</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: WORK EXPERIENCE (ALL 3 POSITIONS) -->
+    <section class="experience-section" id="experience">
+      <div class="container">
+        <div class="section-pill-badge">
+          <span class="badge-dot"></span>
+          <span>CAREER HISTORY</span>
+        </div>
+        <h2 class="section-title-lg">Enterprise Operations &amp; Experience</h2>
+
+        <div class="timeline-cards-list">
+          
+          <!-- Position 1: The University of Texas at Dallas -->
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <div>
+                <h3 class="exp-role-title">IT &amp; Administrative Support Assistant</h3>
+                <div class="exp-company-sub">The University of Texas at Dallas — ECS Dean's Office</div>
+              </div>
+              <div class="exp-meta-badge">
+                <span class="exp-date-pill">May 2025 – May 2026 · 1 yr 1 mo</span>
+                <span class="exp-location">Dallas, TX</span>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Provided comprehensive IT and administrative support for the Erik Jonsson School of Engineering Dean's Office.</li>
+              <li>Managed help ticket handling and coordinated AV/tech setup for high-profile university events and academic symposiums.</li>
+              <li>Oversaw front-desk operations and facilitated effective communication between students, faculty, and IT leadership.</li>
+              <li>Resolved technical and administrative requests efficiently in a high-demand academic environment.</li>
+            </ul>
+            <div class="exp-tech-tags">
+              <span class="exp-tag">Campus IT Support</span>
+              <span class="exp-tag">Ticketing Systems</span>
+              <span class="exp-tag">AV Network Infrastructure</span>
+              <span class="exp-tag">Technical Operations</span>
+            </div>
+          </div>
+
+          <!-- Position 2: HDFC Bank - Networks System Analyst -->
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <div>
+                <h3 class="exp-role-title">Networks System Analyst</h3>
+                <div class="exp-company-sub">HDFC Bank — Mission-Critical Enterprise Infrastructure</div>
+              </div>
+              <div class="exp-meta-badge">
+                <span class="exp-date-pill">July 2023 – July 2024 · 1 yr 1 mo</span>
+                <span class="exp-location">Mumbai, India</span>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Monitored end-to-end network performance across mission-critical infrastructure serving <strong>5M+ users</strong> using AppDynamics, reducing incident resolution time by 35% through proactive latency-bottleneck detection.</li>
+              <li>Diagnosed and resolved 30–40 network incidents per month (connectivity failures, packet loss, service degradation), cutting downtime by 30% via structured root-cause analysis and alarm-handling workflows.</li>
+              <li>Built KPI-based real-time alerting and reporting frameworks in support of proactive capacity monitoring for the network operations team.</li>
+              <li>Managed incident workflows in ServiceNow at <strong>95%+ SLA compliance</strong>, covering real-time tracking, alarm classification, and escalation management.</li>
+              <li>Enforced network security policy and privileged access controls with CyberArk across distributed banking infrastructure, reducing unauthorized access risk.</li>
+              <li>Designed and trained a machine learning model on time-series call/traffic data to predict mobile and net-banking network incidents, enabling adaptive capacity planning ahead of demand spikes.</li>
+              <li>Analyzed traffic-flow and performance data to produce capacity utilization reports that informed network scaling decisions.</li>
+            </ul>
+            <div class="exp-tech-tags">
+              <span class="exp-tag">AppDynamics</span>
+              <span class="exp-tag">CyberArk PAM</span>
+              <span class="exp-tag">ServiceNow</span>
+              <span class="exp-tag">Machine Learning Time-Series</span>
+              <span class="exp-tag">Root-Cause Analysis</span>
+              <span class="exp-tag">Traffic Telemetry</span>
+              <span class="exp-tag">Capacity Planning</span>
+            </div>
+          </div>
+
+          <!-- Position 3: HDFC Bank - Network Engineering Intern -->
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <div>
+                <h3 class="exp-role-title">Network Engineering Intern</h3>
+                <div class="exp-company-sub">HDFC Bank — Network Operations Center (NOC)</div>
+              </div>
+              <div class="exp-meta-badge">
+                <span class="exp-date-pill">January 2023 – June 2023 · 6 mos</span>
+                <span class="exp-location">Mumbai, India</span>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Built KPI-based alerting dashboards and reporting templates that gave the NOC team proactive visibility into network capacity and health.</li>
+              <li>Supported diagnosis and root-cause analysis of connectivity failures and packet loss under senior engineer guidance, contributing to a measurable reduction in MTTR.</li>
+              <li>Assisted in enforcing CyberArk-based privileged access management and supported access audits across distributed banking infrastructure.</li>
+            </ul>
+            <div class="exp-tech-tags">
+              <span class="exp-tag">NOC Dashboards</span>
+              <span class="exp-tag">CyberArk Access Audits</span>
+              <span class="exp-tag">Packet Loss Diagnosis</span>
+              <span class="exp-tag">Network Health Telemetry</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EDUCATION & CERTIFICATIONS -->
+    <section class="edu-section" id="education">
+      <div class="container">
+        <div class="section-pill-badge">
+          <span class="badge-dot blue-dot"></span>
+          <span>ACADEMIC FOUNDATION</span>
+        </div>
+        <h2 class="section-title-lg">Education &amp; Credentials</h2>
+
+        <div class="edu-grid">
+          <!-- UT Dallas -->
+          <div class="edu-card">
+            <div class="edu-icon-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <h3 class="edu-school">The University of Texas at Dallas</h3>
+            <div class="edu-degree">Master of Science (MS) in Telecommunications Engineering</div>
+            <div class="edu-timeline">August 2024 – May 2026 · Dallas, TX</div>
+            <p class="edu-desc">
+              Rigorous advanced focus on Computer Networks, Network Security Architectures, Wireless Communications, Switching &amp; Routing protocols, and Cloud Infrastructure telemetry.
+            </p>
+          </div>
+
+          <!-- University of Mumbai -->
+          <div class="edu-card">
+            <div class="edu-icon-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <h3 class="edu-school">University of Mumbai</h3>
+            <div class="edu-degree">Bachelor of Technology (BTech) in Electronic &amp; Telecommunications Engineering</div>
+            <div class="edu-timeline">2019 – 2023 · Mumbai, India</div>
+            <p class="edu-desc">
+              Strong technical grounding in Data Communications, Transmission Systems, Routing Protocols, Signal Processing, and Embedded Network Interfaces.
+            </p>
+          </div>
+        </div>
+
+        <!-- Certifications Highlight Row -->
+        <div class="certs-row" id="skills">
+          <div class="cert-box">
+            <div class="cert-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="cert-title">Cisco Certified Network Associate (CCNA)</div>
+              <div class="cert-issuer">Cisco · Routing, Switching &amp; Security</div>
+            </div>
+          </div>
+
+          <div class="cert-box">
+            <div class="cert-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div>
+              <div class="cert-title">Computer Networks &amp; Network Security</div>
+              <div class="cert-issuer">Certified Security &amp; Protocol Hardening</div>
+            </div>
+          </div>
+
+          <div class="cert-box">
+            <div class="cert-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="cert-title">HashiCorp Certified</div>
+              <div class="cert-issuer">HashiCorp · Cloud Infrastructure</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: REAL VERIFIED ENTERPRISE STATS -->
+    <section class="stats-section" id="stats">
+      <div class="container">
+        <div class="section-pill-badge">
+          <span class="badge-dot"></span>
+          <span>QUANTIFIABLE METRICS</span>
+        </div>
+
+        <!-- Top 2 Big Metric Cards -->
+        <div class="stats-top-grid">
+          <!-- Card 1: 5M+ Enterprise Users -->
+          <div class="stat-big-card">
+            <span class="stat-card-badge">Enterprise Scale</span>
+            <div class="stat-card-number">5M+</div>
+            <div class="stat-card-label">Active Users Supported</div>
+            <p class="stat-card-desc">
+              Mission-critical banking core and distributed branch network infrastructure monitored 24/7 across high-throughput production transactions.
+            </p>
+          </div>
+
+          <!-- Card 2: 35% Resolution Time Reduction -->
+          <div class="stat-big-card">
+            <span class="stat-card-badge">Incident Velocity</span>
+            <div class="stat-card-number">35%</div>
+            <div class="stat-card-label">Resolution Time Cut</div>
+            <p class="stat-card-desc">
+              Proactive latency-bottleneck isolation with AppDynamics and automated telemetry alerting, slashing MTTR across production outages.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bottom 4 Pie Metrics Bar -->
+        <div class="stats-bottom-bar">
+          <!-- Metric 1: 30% Downtime Reduction -->
+          <div class="stat-mini-item">
+            <div class="stat-pie-box">
+              <svg viewBox="0 0 64 64" class="stat-pie-svg">
+                <circle cx="32" cy="32" r="26" fill="#1e1e24"></circle>
+                <path d="M 32,32 L 32,6 A 26,26 0 1,1 12,18 Z" fill="#FF5E1E"></path>
+              </svg>
+            </div>
+            <div class="stat-mini-val">30%</div>
+            <div class="stat-mini-title">Downtime Cut</div>
+          </div>
+
+          <!-- Metric 2: 95%+ SLA Compliance -->
+          <div class="stat-mini-item">
+            <div class="stat-pie-box">
+              <svg viewBox="0 0 64 64" class="stat-pie-svg">
+                <circle cx="32" cy="32" r="26" fill="#1e1e24"></circle>
+                <path d="M 32,32 L 32,6 A 26,26 0 1,1 22,8 Z" fill="#3C7EFF"></path>
+              </svg>
+            </div>
+            <div class="stat-mini-val">95%+</div>
+            <div class="stat-mini-title">SLA Compliance</div>
+          </div>
+
+          <!-- Metric 3: 30-40 Critical Incidents/Mo -->
+          <div class="stat-mini-item">
+            <div class="stat-pie-box">
+              <svg viewBox="0 0 64 64" class="stat-pie-svg">
+                <circle cx="32" cy="32" r="26" fill="#1e1e24"></circle>
+                <path d="M 32,32 L 32,6 A 26,26 0 1,1 8,41 Z" fill="#FFFFFF"></path>
+              </svg>
+            </div>
+            <div class="stat-mini-val">35/mo</div>
+            <div class="stat-mini-title">Incidents Solved</div>
+          </div>
+
+          <!-- Metric 4: 100% PAM Compliance -->
+          <div class="stat-mini-item">
+            <div class="stat-pie-box">
+              <svg viewBox="0 0 64 64" class="stat-pie-svg">
+                <circle cx="32" cy="32" r="26" fill="#1e1e24"></circle>
+                <path d="M 32,32 L 32,6 A 26,26 0 1,1 31.9,6 Z" fill="#22C55E"></path>
+              </svg>
+            </div>
+            <div class="stat-mini-val">100%</div>
+            <div class="stat-mini-title">CyberArk Security</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: ARYAN SORTE SHOWCASE WITH CENTERED PORTRAIT -->
+    <section class="person-section" id="about">
+      <div class="container">
+        
+        <div class="person-hero-wrapper">
+          <div class="person-name-line name-first">ARYAN</div>
+          
+          <div class="person-image-card">
+            <img src="ezgif-frame-001.jpg" alt="Aryan Sorte - Network Engineer &amp; Telecommunications Specialist" loading="lazy" />
+          </div>
+          
+          <div class="person-name-line name-last">SORTE</div>
+        </div>
+
+        <div class="person-meta-row">
+          <div class="person-role-pill">Network Engineer &amp; Telecom Specialist</div>
+          <p class="person-statement">
+            Bridging enterprise network operations, telemetry observability, and predictive machine learning to engineer zero-downtime infrastructure.
+          </p>
+
+          <div class="person-contact-links">
+            <a href="mailto:aryansorte2016@gmail.com" class="person-contact-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>aryansorte2016@gmail.com</span>
+            </a>
+            <a href="https://www.linkedin.com/in/aryansorte381" target="_blank" rel="noopener noreferrer" class="person-contact-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>LinkedIn Profile ↗</span>
+            </a>
+            <a href="projects.html" class="person-contact-pill" style="border-color: var(--accent-orange); color: var(--accent-orange);">
+              <span>View Technical Projects ↗</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: READY TO GROW & SCALE / CONTACT FORM -->
+    <section class="scale-section" id="contact">
+      <div class="container">
+        
+        <div class="scale-header">
+          <h2 class="ready-top">READY TO</h2>
+          <div class="ready-bottom-row">
+            <div class="ready-grow">CONNECT</div>
+            <div class="ready-scale-block">
+              <div class="lets-talk-pill">
+                <span class="lets-talk-dot"></span>
+                <div class="lets-talk-text-group">
+                  <span class="lets-talk-title">LET'S TALK</span>
+                  <span class="lets-talk-desc">Available for Full-time Roles</span>
+                </div>
+              </div>
+              <div class="ready-scale-text">
+                &amp; STRENGTHEN YOUR<br />NETWORK TEAM?
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="scale-form" onsubmit="event.preventDefault(); alert('Thank you for reaching out to Aryan Sorte! I will respond promptly.');">
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-field-label" for="user-name">YOUR NAME OR COMPANY*</label>
+              <input class="form-field-input" type="text" id="user-name" placeholder="Ericsson / Cisco / Telecom Recruiter" required />
+            </div>
+
+            <div class="form-field">
+              <label class="form-field-label" for="user-email">EMAIL OR PHONE NUMBER*</label>
+              <input class="form-field-input" type="text" id="user-email" placeholder="recruiter@company.com" required />
+            </div>
+
+            <div class="form-field">
+              <label class="form-field-label" for="user-role">TARGET ROLE OR INQUIRY*</label>
+              <input class="form-field-input" type="text" id="user-role" placeholder="Network Engineer / NOC Engineer / Telecom" required />
+            </div>
+
+            <div class="form-field">
+              <label class="form-field-label" for="user-msg">MESSAGE OR JOB DESCRIPTION</label>
+              <input class="form-field-input" type="text" id="user-msg" placeholder="Let's discuss opportunities in Dallas-Fort Worth..." />
+            </div>
+          </div>
+
+          <div class="form-action-row">
+            <button type="submit" class="btn-submit-pill">
+              <span>Send Message to Aryan</span>
+              <div class="btn-submit-circle">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </form>
+
+        <div class="footer-bar">
+          <div>© 2026 Aryan Sorte. All rights reserved. Master of Science in Telecommunications Engineering.</div>
+          <div>UT Dallas · HDFC Bank · Cisco CCNA Certified</div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- CANVAS SMOOTH SCROLL SCRUBBING ENGINE & DUAL CURSOR NAVIGATION -->
+  <script>
+    (function () {
+      const TOTAL_FRAMES = 240;
+      const canvas = document.getElementById('frame-canvas');
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const navbar = document.getElementById('main-nav');
+      
+      const images = new Array(TOTAL_FRAMES + 1);
+      let framesLoaded = 0;
+      let targetProgress = 0;
+      let currentProgress = 0;
+      const LERP_FACTOR = 0.085;
+      let lastDrawnFrame = -1;
+
+      function getFrameUrl(idx) {
+        return `ezgif-frame-${String(idx).padStart(3, '0')}.jpg`;
+      }
+
+      function preloadImages() {
+        const firstImg = new Image();
+        firstImg.onload = () => {
+          images[1] = firstImg;
+          framesLoaded++;
+          renderSmoothFrame(1);
+        };
+        firstImg.src = getFrameUrl(1);
+        if (firstImg.complete && firstImg.naturalWidth > 0) {
+          images[1] = firstImg;
+          renderSmoothFrame(1);
+        }
+
+        for (let i = 2; i <= TOTAL_FRAMES; i++) {
+          const img = new Image();
+          img.onload = () => {
+            images[i] = img;
+            framesLoaded++;
+          };
+          img.src = getFrameUrl(i);
+        }
+      }
+
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(window.innerWidth * dpr);
+        canvas.height = Math.round(window.innerHeight * dpr);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        const exactFrame = Math.min(
+          TOTAL_FRAMES,
+          Math.max(1, currentProgress * (TOTAL_FRAMES - 1) + 1)
+        );
+        renderSmoothFrame(exactFrame);
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      // Ultra-smooth sub-frame cross-fading renderer
+      function renderSmoothFrame(exactFrame) {
+        const f1 = Math.max(1, Math.min(TOTAL_FRAMES, Math.floor(exactFrame)));
+        const f2 = Math.max(1, Math.min(TOTAL_FRAMES, Math.ceil(exactFrame)));
+        const blend = exactFrame - f1;
+
+        let img1 = images[f1];
+        let img2 = images[f2];
+
+        // Search for nearest loaded frame if img1 not ready
+        if (!img1 || !img1.complete || img1.naturalWidth === 0) {
+          for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+            const prev = images[Math.max(1, f1 - offset)];
+            if (prev && prev.complete && prev.naturalWidth > 0) {
+              img1 = prev;
+              break;
+            }
+            const next = images[Math.min(TOTAL_FRAMES, f1 + offset)];
+            if (next && next.complete && next.naturalWidth > 0) {
+              img1 = next;
+              break;
+            }
+          }
+        }
+
+        if (!img1 || !img1.complete || img1.naturalWidth === 0) return;
+
+        const cw = canvas.width;
+        const ch = canvas.height;
+        const iw1 = img1.naturalWidth;
+        const ih1 = img1.naturalHeight;
+
+        const ratio1 = Math.max(cw / iw1, ch / ih1);
+        const nw1 = Math.round(iw1 * ratio1);
+        const nh1 = Math.round(ih1 * ratio1);
+        const ox1 = Math.round((cw - nw1) * 0.5);
+        const oy1 = Math.round((ch - nh1) * 0.5);
+
+        ctx.fillStyle = '#0c0d12';
+        ctx.fillRect(0, 0, cw, ch);
+
+        // Render base primary frame
+        ctx.globalAlpha = 1.0;
+        ctx.drawImage(img1, ox1, oy1, nw1, nh1);
+
+        // Seamlessly cross-fade adjacent frame on top if between frames
+        if (f1 !== f2 && blend > 0.005 && img2 && img2.complete && img2.naturalWidth > 0) {
+          const iw2 = img2.naturalWidth;
+          const ih2 = img2.naturalHeight;
+          const ratio2 = Math.max(cw / iw2, ch / ih2);
+          const nw2 = Math.round(iw2 * ratio2);
+          const nh2 = Math.round(ih2 * ratio2);
+          const ox2 = Math.round((cw - nw2) * 0.5);
+          const oy2 = Math.round((ch - nh2) * 0.5);
+
+          ctx.globalAlpha = blend;
+          ctx.drawImage(img2, ox2, oy2, nw2, nh2);
+          ctx.globalAlpha = 1.0;
+        }
+      }
+
+      // Track window scroll progress & update floating rail thumb
+      const thumb = document.getElementById('cursorThumbHandle');
+      const track = document.getElementById('cursorTrackSlot');
+
+      function onScroll() {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (maxScroll <= 0) {
+          targetProgress = 0;
+        } else {
+          targetProgress = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+        }
+
+        if (window.scrollY > 40) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+
+        // Smoothly fade background photo depth as user scrolls deeper into content
+        const fadeDepth = Math.max(0.38, 1 - (window.scrollY / (window.innerHeight * 1.4)) * 0.62);
+        canvas.style.opacity = fadeDepth;
+
+        // Update floating vertical thumb position
+        if (thumb && track) {
+          const trackHeight = track.clientHeight - thumb.clientHeight;
+          const thumbTop = targetProgress * trackHeight;
+          thumb.style.top = `${thumbTop}px`;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      currentProgress = targetProgress;
+
+      function animate() {
+        const diff = targetProgress - currentProgress;
+        if (Math.abs(diff) > 0.00005) {
+          currentProgress += diff * LERP_FACTOR;
+        } else {
+          currentProgress = targetProgress;
+        }
+
+        const exactFrame = Math.min(
+          TOTAL_FRAMES,
+          Math.max(1, currentProgress * (TOTAL_FRAMES - 1) + 1)
+        );
+
+        renderSmoothFrame(exactFrame);
+        requestAnimationFrame(animate);
+      }
+
+      preloadImages();
+      requestAnimationFrame(animate);
+
+      // ========================================================
+      // CURSOR NAVIGATION CONTROLS: OPERATE PAGE UP & DOWN
+      // ========================================================
+      // 1. Up & Down click buttons
+      const btnUp = document.getElementById('btnScrollUp');
+      const btnDown = document.getElementById('btnScrollDown');
+
+      if (btnUp) {
+        btnUp.addEventListener('click', () => {
+          window.scrollBy({ top: -window.innerHeight * 0.75, behavior: 'smooth' });
+        });
+      }
+
+      if (btnDown) {
+        btnDown.addEventListener('click', () => {
+          window.scrollBy({ top: window.innerHeight * 0.75, behavior: 'smooth' });
+        });
+      }
+
+      // 2. Drag on floating vertical track
+      let isTrackDragging = false;
+      if (track) {
+        function scrubToTrack(e) {
+          const rect = track.getBoundingClientRect();
+          const offsetY = Math.max(0, Math.min(rect.height, e.clientY - rect.top));
+          const pct = offsetY / rect.height;
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+          window.scrollTo({ top: pct * maxScroll, behavior: 'auto' });
+        }
+
+        track.addEventListener('mousedown', (e) => {
+          isTrackDragging = true;
+          scrubToTrack(e);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (isTrackDragging) scrubToTrack(e);
+        });
+
+        window.addEventListener('mouseup', () => {
+          isTrackDragging = false;
+        });
+      }
+
+      // 3. Smooth Click & Drag Anywhere to Scroll Page with Cursor
+      let isDraggingPage = false;
+      let startMouseY = 0;
+      let startScrollY = 0;
+      let lastMoveY = 0;
+      let velocityY = 0;
+      let rafInertia = null;
+
+      window.addEventListener('mousedown', (e) => {
+        // Prevent drag scroll on clickable controls (links, inputs, buttons)
+        if (e.target.closest('a, button, input, textarea, select, .cursor-nav-rail')) {
+          return;
+        }
+        if (e.button !== 0) return; // Only primary mouse button
+
+        isDraggingPage = true;
+        startMouseY = e.clientY;
+        lastMoveY = e.clientY;
+        startScrollY = window.scrollY;
+        velocityY = 0;
+
+        document.body.classList.add('cursor-dragging');
+        if (rafInertia) cancelAnimationFrame(rafInertia);
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDraggingPage) return;
+        const delta = e.clientY - startMouseY;
+        velocityY = e.clientY - lastMoveY;
+        lastMoveY = e.clientY;
+
+        // Scroll proportionally with smooth responsiveness
+        window.scrollTo({
+          top: startScrollY - delta * 1.6,
+          behavior: 'auto'
+        });
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isDraggingPage) return;
+        isDraggingPage = false;
+        document.body.classList.remove('cursor-dragging');
+
+        // Apply smooth coasting momentum inertia
+        if (Math.abs(velocityY) > 2) {
+          let momentum = -velocityY * 14;
+          function coast() {
+            if (Math.abs(momentum) > 0.5) {
+              window.scrollBy(0, momentum);
+              momentum *= 0.92;
+              rafInertia = requestAnimationFrame(coast);
+            }
+          }
+          coast();
+        }
+      });
+
+      // Smooth scroll for nav anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElem = document.querySelector(targetId);
+          if (targetElem) {
+            e.preventDefault();
+            targetElem.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Hide hint pill after 5 seconds of interaction
+      const hint = document.getElementById('cursorHintPill');
+      if (hint) {
+        setTimeout(() => {
+          hint.style.opacity = '0';
+          setTimeout(() => hint.remove(), 400);
+        }, 6000);
+      }
+    })();
+  </script>
+</body>
+</html>
