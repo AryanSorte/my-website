@@ -31,7 +31,13 @@
       padding: 0;
     }
 
-    html, body {
+    html {
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    body {
       width: 100%;
       background-color: var(--bg-dark);
       background-image: 
@@ -41,15 +47,9 @@
       background-attachment: fixed;
       color: var(--text-white);
       font-family: var(--font-main);
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      cursor: grab;
-    }
-
-    body.cursor-dragging {
-      cursor: grabbing !important;
-      user-select: none !important;
+      cursor: default;
     }
 
     /* Container matching wide 95% layout */

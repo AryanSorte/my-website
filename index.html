@@ -31,21 +31,20 @@
       padding: 0;
     }
 
-    html, body {
+    html {
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    body {
       width: 100%;
       background-color: var(--bg-dark);
       color: var(--text-white);
       font-family: var(--font-main);
-      overflow-x: hidden;
-      overscroll-behavior: none;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      cursor: grab;
-    }
-
-    body.cursor-dragging {
-      cursor: grabbing !important;
-      user-select: none !important;
+      cursor: default;
     }
 
     /* Fixed Canvas Video Animation Layer - Crystal Sharp, Zero Blur */
@@ -2183,62 +2182,8 @@
         });
       }
 
-      // 3. Smooth Click & Drag Anywhere to Scroll Page with Cursor
-      let isDraggingPage = false;
-      let startMouseY = 0;
-      let startScrollY = 0;
-      let lastMoveY = 0;
-      let velocityY = 0;
-      let rafInertia = null;
-
-      window.addEventListener('mousedown', (e) => {
-        // Prevent drag scroll on clickable controls (links, inputs, buttons)
-        if (e.target.closest('a, button, input, textarea, select, .cursor-nav-rail')) {
-          return;
-        }
-        if (e.button !== 0) return; // Only primary mouse button
-
-        isDraggingPage = true;
-        startMouseY = e.clientY;
-        lastMoveY = e.clientY;
-        startScrollY = window.scrollY;
-        velocityY = 0;
-
-        document.body.classList.add('cursor-dragging');
-        if (rafInertia) cancelAnimationFrame(rafInertia);
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        if (!isDraggingPage) return;
-        const delta = e.clientY - startMouseY;
-        velocityY = e.clientY - lastMoveY;
-        lastMoveY = e.clientY;
-
-        // Scroll proportionally with smooth responsiveness
-        window.scrollTo({
-          top: startScrollY - delta * 1.6,
-          behavior: 'auto'
-        });
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (!isDraggingPage) return;
-        isDraggingPage = false;
-        document.body.classList.remove('cursor-dragging');
-
-        // Apply smooth coasting momentum inertia
-        if (Math.abs(velocityY) > 2) {
-          let momentum = -velocityY * 14;
-          function coast() {
-            if (Math.abs(momentum) > 0.5) {
-              window.scrollBy(0, momentum);
-              momentum *= 0.92;
-              rafInertia = requestAnimationFrame(coast);
-            }
-          }
-          coast();
-        }
-      });
+      // 3. Enable natural, smooth mouse wheel scrolling
+      window.addEventListener('wheel', () => {}, { passive: true });
 
       // Smooth scroll for nav anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
